@@ -4,6 +4,9 @@ dependencies:
   '@githubnext/blocks':
     specifier: 2.3.5
     version: 2.3.5(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(typescript@5.0.3)
+  '@mrleebo/prisma-ast':
+    specifier: 0.5.1
+    version: 0.5.1
   react:
     specifier: 18.2.0
     version: 18.2.0
@@ -278,6 +281,29 @@ packages:
       '@babel/helper-string-parser': 7.19.4
       '@babel/helper-validator-identifier': 7.19.1
       to-fast-properties: 2.0.0
+    dev: false
+
+  /@chevrotain/cst-dts-gen@10.5.0:
+    resolution: {integrity: sha512-lhmC/FyqQ2o7pGK4Om+hzuDrm9rhFYIJ/AXoQBeongmn870Xeb0L6oGEiuR8nohFNL5sMaQEJWCxr1oIVIVXrw==}
+    dependencies:
+      '@chevrotain/gast': 10.5.0
+      '@chevrotain/types': 10.5.0
+      lodash: 4.17.21
+    dev: false
+
+  /@chevrotain/gast@10.5.0:
+    resolution: {integrity: sha512-pXdMJ9XeDAbgOWKuD1Fldz4ieCs6+nLNmyVhe2gZVqoO7v8HXuHYs5OV2EzUtbuai37TlOAQHrTDvxMnvMJz3A==}
+    dependencies:
+      '@chevrotain/types': 10.5.0
+      lodash: 4.17.21
+    dev: false
+
+  /@chevrotain/types@10.5.0:
+    resolution: {integrity: sha512-f1MAia0x/pAVPWH/T73BJVyO2XU5tI4/iE7cnxb7tqdNTNhQI3Uq3XkqcoteTmD4t1aM0LbHCJOhgIDn07kl2A==}
+    dev: false
+
+  /@chevrotain/utils@10.5.0:
+    resolution: {integrity: sha512-hBzuU5+JjB2cqNZyszkDHZgOSrUUT8V3dhgRl8Q9Gp6dAj/H5+KILGjbhDpc3Iy9qmqlm/akuOI2ut9VUtzJxQ==}
     dev: false
 
   /@emotion/is-prop-valid@1.2.0:
@@ -746,6 +772,13 @@ packages:
       hoist-non-react-statics: 3.3.2
       react: 18.2.0
       react-is: 16.13.1
+    dev: false
+
+  /@mrleebo/prisma-ast@0.5.1:
+    resolution: {integrity: sha512-9RPCwTZ2YUzgzkKcSk2LOd6KnkBokVPXU3y0B1GHXqjGEWCtE5ky/BUk3sJqfoeVTXTfXfhzk5Bg+KgFRRWosQ==}
+    engines: {node: '>=12'}
+    dependencies:
+      chevrotain: 10.5.0
     dev: false
 
   /@nodelib/fs.scandir@2.1.5:
@@ -1480,6 +1513,17 @@ packages:
     resolution: {integrity: sha512-ree3Gqw/nazQAPuJJEy+avdl7QfZMcUvmHIKgEZkGL+xOBzRvup5Hxo6LHuMceSxOabuJLJm5Yp/92R9eMmMvA==}
     engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
     dev: true
+
+  /chevrotain@10.5.0:
+    resolution: {integrity: sha512-Pkv5rBY3+CsHOYfV5g/Vs5JY9WTHHDEKOlohI2XeygaZhUeqhAlldZ8Hz9cRmxu709bvS08YzxHdTPHhffc13A==}
+    dependencies:
+      '@chevrotain/cst-dts-gen': 10.5.0
+      '@chevrotain/gast': 10.5.0
+      '@chevrotain/types': 10.5.0
+      '@chevrotain/utils': 10.5.0
+      lodash: 4.17.21
+      regexp-to-ast: 0.5.0
+    dev: false
 
   /chokidar@3.5.3:
     resolution: {integrity: sha512-Dr3sfKRP6oTcjf2JmUmFJfeVMvXBdegxB0iVQ5eb2V10uFJUCAS8OByZdVAyVb8xXNz3GjjTgj9kLWsZTqE6kw==}
@@ -3850,6 +3894,10 @@ packages:
 
   /regenerator-runtime@0.13.11:
     resolution: {integrity: sha512-kY1AZVr2Ra+t+piVaJ4gxaFaReZVH40AKNo7UCX6W+dEwBo/2oZJzqfuN1qLq1oL45o56cPaTXELwrTh8Fpggg==}
+
+  /regexp-to-ast@0.5.0:
+    resolution: {integrity: sha512-tlbJqcMHnPKI9zSrystikWKwHkBqu2a/Sgw01h3zFjvYrMxEDYHzzoMZnUrbIfpTFEsoRnnviOXNCzFiSc54Qw==}
+    dev: false
 
   /regexp-tree@0.1.24:
     resolution: {integrity: sha512-s2aEVuLhvnVJW6s/iPgEGK6R+/xngd2jNQ+xy4bXNDKxZKJH6jpPHY6kVeVv1IeLCHgswRj+Kl3ELaDjG6V1iw==}
