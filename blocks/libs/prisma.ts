@@ -11,4 +11,4 @@ function isDefinition(block: Block): block is Definition {
   return block.type === 'enum' || block.type === 'model'
 }
 
-type Definition = Enum | Model
+export type Definition = Enum | Model

@@ -14,6 +14,7 @@
   "dependencies": {
     "@githubnext/blocks": "2.3.5",
     "@mrleebo/prisma-ast": "0.5.1",
+    "dagre": "0.8.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "reactflow": "11.7.0"
@@ -22,6 +23,7 @@
     "@hideoo/eslint-config": "1.1.1",
     "@hideoo/prettier-config": "1.0.1",
     "@hideoo/tsconfig": "2.0.1",
+    "@types/dagre": "0.7.48",
     "@types/react": "18.0.33",
     "eslint": "8.37.0",
     "husky": "8.0.3",
