@@ -1,0 +1,55 @@
+{
+  "name": "prisma-schema-block",
+  "version": "0.0.1",
+  "license": "MIT",
+  "description": "",
+  "author": "HiDeoo <github@hideoo.dev> (https://hideoo.dev)",
+  "type": "module",
+  "scripts": {
+    "dev": "blocks start",
+    "build": "blocks build",
+    "lint": "prettier -c --cache . && eslint . --cache --max-warnings=0 && tsc --noEmit",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "@githubnext/blocks": "2.3.5",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@hideoo/eslint-config": "1.1.1",
+    "@hideoo/prettier-config": "1.0.1",
+    "@hideoo/tsconfig": "2.0.0",
+    "@types/react": "18.0.33",
+    "eslint": "8.37.0",
+    "husky": "8.0.3",
+    "lint-staged": "13.2.0",
+    "prettier": "2.8.7",
+    "typescript": "5.0.3"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "allowedVersions": {
+        "typescript": "5"
+      }
+    }
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "packageManager": "pnpm@8.1.1",
+  "private": true,
+  "sideEffects": false,
+  "keywords": [],
+  "homepage": "https://github.com/HiDeoo/prisma-schema-block",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HiDeoo/prisma-schema-block.git"
+  },
+  "bugs": "https://github.com/HiDeoo/prisma-schema-block/issues",
+  "prettier": "@hideoo/prettier-config",
+  "lint-staged": {
+    "**/*": "prettier -w -u --cache",
+    "**/*.{js,jsx,ts,tsx,cjs,mjs}": "eslint --cache --max-warnings=0"
+  }
+}

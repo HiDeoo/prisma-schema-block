@@ -1,0 +1,9 @@
+{
+  "allow": [
+    {
+      "owner": "HiDeoo",
+      "repo": "prisma-schema-block",
+      "id": "prisma-schema-block"
+    }
+  ]
+}
