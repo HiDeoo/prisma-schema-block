@@ -3,7 +3,7 @@ lockfileVersion: '6.0'
 dependencies:
   '@githubnext/blocks':
     specifier: 2.3.5
-    version: 2.3.5(react-dom@18.2.0)(react-is@16.13.1)(react@18.2.0)(typescript@5.0.3)
+    version: 2.3.5(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(typescript@5.0.3)
   react:
     specifier: 18.2.0
     version: 18.2.0
@@ -19,8 +19,8 @@ devDependencies:
     specifier: 1.0.1
     version: 1.0.1
   '@hideoo/tsconfig':
-    specifier: 2.0.0
-    version: 2.0.0
+    specifier: 2.0.1
+    version: 2.0.1
   '@types/react':
     specifier: 18.0.33
     version: 18.0.33
@@ -558,7 +558,7 @@ packages:
     resolution: {integrity: sha512-18qgH9FYUHYN9K3z4s35auDHww1dKTU6TacI8JkA5OuvHVa1lTMuSTZ4hIoJngD5+mizcoRMOs6p/yZYMIjsyg==}
     dev: false
 
-  /@githubnext/blocks@2.3.5(react-dom@18.2.0)(react-is@16.13.1)(react@18.2.0)(typescript@5.0.3):
+  /@githubnext/blocks@2.3.5(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(typescript@5.0.3):
     resolution: {integrity: sha512-4ifvI9WUiVnEKvXvnLbJLU8HANZH6VGHmMmVWXvBbVOnKBbi4HUZdu0hVEJ/Stk2tsZ2zcnzgEkiZjuwTQbgfg==}
     engines: {node: '>=14.0.0'}
     hasBin: true
@@ -584,7 +584,7 @@ packages:
       prettier: 2.8.7
       react-error-boundary: 3.1.4(react@18.2.0)
       react-query: 3.39.3(react-dom@18.2.0)(react@18.2.0)
-      styled-components: 5.3.9(react-dom@18.2.0)(react-is@16.13.1)(react@18.2.0)
+      styled-components: 5.3.9(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
       twind: 0.16.19(typescript@5.0.3)
       vite: 4.2.1
     transitivePeerDependencies:
@@ -670,8 +670,8 @@ packages:
     resolution: {integrity: sha512-mVsRohq09RC5QYSXyfIhDmHSsyZWHEYCU9IpL9psUMSiNw+HJ69xm4A6tTDsEAhDc9k52v4UuV5Ol4ye7o6dTA==}
     dev: true
 
-  /@hideoo/tsconfig@2.0.0:
-    resolution: {integrity: sha512-Js01pOMjDPKaY2crlWTYLgxnIm6p18BFgfyxKY+pQBqcnuLUtnumfPP5T0uRhIJ2Y3To8hBEPipAszWE9Ox5Ag==}
+  /@hideoo/tsconfig@2.0.1:
+    resolution: {integrity: sha512-orM6e/3fbb8+DhJpsh6PKIhgNww8Di/PUOxml4VCMeNuD8W/kHCXl+9sLm5uwYP5xOWZoXPa++15HS9j21Xvag==}
     dev: true
 
   /@humanwhocodes/config-array@0.11.8:
@@ -850,7 +850,7 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       react-intersection-observer: 9.4.1(react@18.2.0)
-      styled-components: 5.3.9(react-dom@18.2.0)(react-is@16.13.1)(react@18.2.0)
+      styled-components: 5.3.9(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
       styled-system: 5.1.5
     dev: false
 
@@ -1356,7 +1356,7 @@ packages:
       babel-plugin-syntax-jsx: 6.18.0
       lodash: 4.17.21
       picomatch: 2.3.1
-      styled-components: 5.3.9(react-dom@18.2.0)(react-is@16.13.1)(react@18.2.0)
+      styled-components: 5.3.9(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
     dev: false
 
   /babel-plugin-syntax-jsx@6.18.0:
@@ -3787,6 +3787,10 @@ packages:
   /react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
 
+  /react-is@18.2.0:
+    resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==}
+    dev: false
+
   /react-query@3.39.3(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-nLfLz7GiohKTJDuT4us4X3h/8unOh+00MLb2yJoGTPjxKs2bc1iDhkNx2bd5MKklXnOD3NrVZ+J2UXujA5In4g==}
     peerDependencies:
@@ -4220,7 +4224,7 @@ packages:
     resolution: {integrity: sha512-/VDRsWvQAgspVy9eATN3z6itKTuyg+jW1q6UoTCQCFRqPDw8bi3E1hXIKnGw5LvXS2AQPuJ7Af4auTLYeBOLEg==}
     dev: false
 
-  /styled-components@5.3.9(react-dom@18.2.0)(react-is@16.13.1)(react@18.2.0):
+  /styled-components@5.3.9(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-Aj3kb13B75DQBo2oRwRa/APdB5rSmwUfN5exyarpX+x/tlM/rwZA2vVk2vQgVSP6WKaZJHWwiFrzgHt+CLtB4A==}
     engines: {node: '>=10'}
     peerDependencies:
@@ -4238,7 +4242,7 @@ packages:
       hoist-non-react-statics: 3.3.2
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-      react-is: 16.13.1
+      react-is: 18.2.0
       shallowequal: 1.1.0
       supports-color: 5.5.0
     dev: false

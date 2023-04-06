@@ -19,7 +19,7 @@
   "devDependencies": {
     "@hideoo/eslint-config": "1.1.1",
     "@hideoo/prettier-config": "1.0.1",
-    "@hideoo/tsconfig": "2.0.0",
+    "@hideoo/tsconfig": "2.0.1",
     "@types/react": "18.0.33",
     "eslint": "8.37.0",
     "husky": "8.0.3",
