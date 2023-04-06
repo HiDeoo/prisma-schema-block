@@ -15,7 +15,8 @@
     "@githubnext/blocks": "2.3.5",
     "@mrleebo/prisma-ast": "0.5.1",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "reactflow": "11.7.0"
   },
   "devDependencies": {
     "@hideoo/eslint-config": "1.1.1",
