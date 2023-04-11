@@ -20,10 +20,10 @@ function getEnumData(definition: Enum): EnumData {
     }
   }
 
-  return { values }
+  return { name: definition.name, values }
 }
 
-function getModelData(definition: Model): EnumData {
+function getModelData(definition: Model): ModelData {
   const values: ModelData['values'] = []
 
   for (const property of definition.properties) {
@@ -33,7 +33,7 @@ function getModelData(definition: Model): EnumData {
     }
   }
 
-  return { values }
+  return { name: definition.name, values }
 }
 
 function isEnum(block: Block): block is Enum {
@@ -52,10 +52,12 @@ export type Definition = Enum | Model
 export type DefinitionData = EnumData | ModelData
 
 export interface EnumData {
+  name: string
   values: string[]
 }
 
 export interface ModelData {
+  name: string
   // TODO(HiDeoo)
   values: string[]
 }
