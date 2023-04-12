@@ -29,7 +29,9 @@ function getModelData(definition: Model): ModelData {
   for (const property of definition.properties) {
     // TODO(HiDeoo) export declare type Property = GroupedModelAttribute | ModelAttribute | Field;
     if (property.type === 'field') {
-      values.push(property.name)
+      // TODO(HiDeoo) fieldType: string | Func;
+      // TODO(HiDeoo) remove as string cast
+      values.push([property.name, property.fieldType as string])
     }
   }
 
@@ -58,6 +60,5 @@ export interface EnumData {
 
 export interface ModelData {
   name: string
-  // TODO(HiDeoo)
-  values: string[]
+  values: [name: string, type: string][]
 }
