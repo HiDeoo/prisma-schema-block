@@ -12,8 +12,9 @@
 
   & tr {
     & td {
-      padding: var(--padding);
       border-bottom: 2px solid var(--border-color-dimmed);
+      padding: var(--padding);
+      position: relative;
 
       &:first-child:not(:last-child) {
         font-weight: 600;

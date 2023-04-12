@@ -20,22 +20,22 @@ function getEnumData(definition: Enum): EnumData {
     }
   }
 
-  return { name: definition.name, values }
+  return { name: definition.name, type: 'enum', values }
 }
 
 function getModelData(definition: Model): ModelData {
-  const values: ModelData['values'] = []
+  const columns: ModelData['columns'] = []
 
   for (const property of definition.properties) {
     // TODO(HiDeoo) export declare type Property = GroupedModelAttribute | ModelAttribute | Field;
     if (property.type === 'field') {
       // TODO(HiDeoo) fieldType: string | Func;
       // TODO(HiDeoo) remove as string cast
-      values.push([property.name, property.fieldType as string])
+      columns.push([property.name, property.fieldType as string])
     }
   }
 
-  return { name: definition.name, values }
+  return { columns, name: definition.name, type: 'model' }
 }
 
 function isEnum(block: Block): block is Enum {
@@ -55,10 +55,12 @@ export type DefinitionData = EnumData | ModelData
 
 export interface EnumData {
   name: string
+  type: 'enum'
   values: string[]
 }
 
 export interface ModelData {
+  columns: [name: string, type: string][]
   name: string
-  values: [name: string, type: string][]
+  type: 'model'
 }

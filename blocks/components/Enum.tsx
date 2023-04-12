@@ -11,5 +11,5 @@ export function Enum({ data }: NodeProps<EnumData>) {
     return data.values.map((value) => [value])
   }, [data.values])
 
-  return <DefinitionTable content={content} name={data.name} type="enum" />
+  return <DefinitionTable rows={content} name={data.name} type="enum" />
 }

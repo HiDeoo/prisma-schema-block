@@ -6,5 +6,5 @@ import { DefinitionTable } from './DefinitionTable'
 
 // TODO(HiDeoo) nis no rows?
 export function Model({ data }: NodeProps<ModelData>) {
-  return <DefinitionTable content={data.values} name={data.name} type="model" />
+  return <DefinitionTable rows={data.columns} name={data.name} type="model" />
 }
