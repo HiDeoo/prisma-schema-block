@@ -1,11 +1,11 @@
 .table {
   --border-color: hsl(0 0% 15%);
-  --border-color-dimmed: hsl(0 0% 64%);
+  --border-color-dimmed: hsl(0 0% 32%);
   --padding: 0.2rem 0.5rem;
 
   border: 2px solid var(--border-color);
   border-collapse: separate;
-  border-radius: 0.5rem;
+  border-radius: 0.4rem;
   border-spacing: 0;
   font-size: 1rem;
   overflow: hidden;
@@ -29,11 +29,11 @@
     padding: var(--padding);
 
     :global(.enum) & {
-      background-color: hsl(32 98% 83%);
+      background-color: hsl(45 100% 90%);
     }
 
     :global(.model) & {
-      background-color: hsl(213 97% 87%);
+      background-color: hsl(213 100% 90%);
     }
   }
 }
