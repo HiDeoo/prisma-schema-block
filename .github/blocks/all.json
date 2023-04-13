@@ -1,5 +1,8 @@
 {
-  "examples/schema.prisma": {
+  "examples/debug.prisma": {
+    "default": "HiDeoo__prisma-schema-block__prisma-schema-block"
+  },
+  "examples/example.prisma": {
     "default": "HiDeoo__prisma-schema-block__prisma-schema-block"
   }
 }

@@ -6,6 +6,6 @@
     "description": "// TODO",
     "entry": "blocks/App.tsx",
     "matches": ["*.prisma"],
-    "example_path": "https://github.com/HiDeoo/prisma-schema-block/blob/main/examples/schema.prisma"
+    "example_path": "https://github.com/HiDeoo/prisma-schema-block/blob/main/examples/example.prisma"
   }
 ]

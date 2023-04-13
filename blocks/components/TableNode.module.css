@@ -1,6 +1,6 @@
 .table {
   --border-color: hsl(0 0% 15%);
-  --border-color-dimmed: hsl(0 0% 32%);
+  --border-color-dimmed: hsl(0 0% 45%);
   --padding: 0.2rem 0.5rem;
 
   border: 2px solid var(--border-color);
@@ -12,7 +12,7 @@
 
   & tr {
     & td {
-      border-bottom: 2px solid var(--border-color-dimmed);
+      border-bottom: 1px solid var(--border-color-dimmed);
       padding: var(--padding);
       position: relative;
 
