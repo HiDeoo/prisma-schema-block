@@ -1,32 +1,30 @@
 import { useCallback, useMemo } from 'react'
 import { Handle, type NodeProps, Position } from 'reactflow'
 
-import { type ModelColumnData, type ModelData } from '../libs/prisma'
+import { type ModelPropertyData, type ModelData } from '../libs/prisma'
 
 import { TableNode } from './TableNode'
 
 // TODO(HiDeoo) nis no rows?
 export function Model({ data }: NodeProps<ModelData>) {
-  const columns = useMemo(() => {
-    return Object.values(data.columns)
-  }, [data.columns])
+  const properties = useMemo(() => Object.values(data.properties), [data.properties])
 
   const rowRenderer = useCallback(
-    (column: ModelColumnData) => {
+    (property: ModelPropertyData) => {
       return (
-        <tr key={column.name}>
+        <tr key={property.name}>
           <td>
-            {column.isTarget ? (
-              <Handle id={`${data.name}-${column.name}`} position={Position.Left} type="target" />
+            {property.isTarget ? (
+              <Handle id={`${data.name}-${property.name}`} position={Position.Left} type="target" />
             ) : null}
-            {column.name}
+            {property.name}
           </td>
-          <td>{column.type}</td>
+          <td>{property.type}</td>
         </tr>
       )
     },
     [data.name]
   )
 
-  return <TableNode className="model" columnCount={2} rowRenderer={rowRenderer} rows={columns} name={data.name} />
+  return <TableNode className="model" cols={2} rowRenderer={rowRenderer} rows={properties} name={data.name} />
 }

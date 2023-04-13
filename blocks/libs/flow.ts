@@ -67,8 +67,8 @@ function getEnumEdges(nodesByIds: NodesByIds) {
       continue
     }
 
-    for (const column of Object.values(node.data.columns)) {
-      const enumNode = enumNodes.find((enumNode) => enumNode.data.name === column.type)
+    for (const property of Object.values(node.data.properties)) {
+      const enumNode = enumNodes.find((enumNode) => enumNode.data.name === property.type)
 
       if (enumNode) {
         nodesByIds.set(enumNode.id, { ...enumNode, data: { ...enumNode.data, isSource: true } })
@@ -76,10 +76,10 @@ function getEnumEdges(nodesByIds: NodesByIds) {
           ...node,
           data: {
             ...node.data,
-            columns: {
-              ...node.data.columns,
-              [column.name]: {
-                ...column,
+            properties: {
+              ...node.data.properties,
+              [property.name]: {
+                ...property,
                 isTarget: true,
               },
             },
@@ -87,10 +87,10 @@ function getEnumEdges(nodesByIds: NodesByIds) {
         })
 
         edges.push({
-          id: `edge-enum-${enumNode.data.name}-${node.data.name}-${column.name}`,
+          id: `edge-enum-${enumNode.data.name}-${node.data.name}-${property.name}`,
           source: enumNode.id,
           target: node.id,
-          targetHandle: `${node.data.name}-${column.name}`,
+          targetHandle: `${node.data.name}-${property.name}`,
           type: 'smoothstep',
         })
       }

@@ -8,7 +8,7 @@ import { TableNode } from './TableNode'
 export function Enum({ data }: NodeProps<EnumData>) {
   return (
     <>
-      <TableNode className="enum" columnCount={1} name={data.name} rowRenderer={rowRenderer} rows={data.values} />
+      <TableNode className="enum" cols={1} name={data.name} rowRenderer={rowRenderer} rows={data.values} />
       {data.isSource ? <Handle position={Position.Bottom} type="source" /> : null}
     </>
   )

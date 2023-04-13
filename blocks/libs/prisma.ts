@@ -1,4 +1,4 @@
-import { type Block, type Enum, getSchema, type Model } from '@mrleebo/prisma-ast'
+import { type Block, type Enum, type Field, getSchema, type Model } from '@mrleebo/prisma-ast'
 
 export function getDefinitionsFromSchema(source: string): Definition[] {
   // TODO(HiDeoo) parse error handling
@@ -24,22 +24,31 @@ function getEnumData(definition: Enum): EnumData {
 }
 
 function getModelData(definition: Model): ModelData {
-  const columns: ModelData['columns'] = {}
+  const properties: ModelData['properties'] = {}
 
   for (const property of definition.properties) {
     // TODO(HiDeoo) export declare type Property = GroupedModelAttribute | ModelAttribute | Field;
     if (property.type === 'field') {
-      // TODO(HiDeoo) fieldType: string | Func;
-      columns[property.name] = {
+      properties[property.name] = {
         isTarget: false,
         name: property.name,
-        // TODO(HiDeoo) remove as string cast
-        type: property.fieldType as string,
+        type: getPropertyType(property),
       }
     }
+
+    // TODO(HiDeoo) attributes
   }
 
-  return { columns, name: definition.name, type: 'model' }
+  return { name: definition.name, properties, type: 'model' }
+}
+
+function getPropertyType(property: Field) {
+  const type =
+    typeof property.fieldType === 'string'
+      ? property.fieldType
+      : `${property.fieldType.name}(${property.fieldType.params.join(', ')})`
+
+  return `${type}${property.array ? '[]' : ''}${property.optional ? '?' : ''}`
 }
 
 function isEnum(block: Block): block is Enum {
@@ -65,12 +74,12 @@ export interface EnumData {
 }
 
 export interface ModelData {
-  columns: Record<ModelColumnData['name'], ModelColumnData>
   name: string
+  properties: Record<ModelPropertyData['name'], ModelPropertyData>
   type: 'model'
 }
 
-export interface ModelColumnData {
+export interface ModelPropertyData {
   isTarget: boolean
   name: string
   type: string
