@@ -20,7 +20,7 @@ function getEnumData(definition: Enum): EnumData {
     }
   }
 
-  return { name: definition.name, type: 'enum', values }
+  return { isSource: false, name: definition.name, type: 'enum', values }
 }
 
 function getModelData(definition: Model): ModelData {
@@ -54,6 +54,7 @@ export type Definition = Enum | Model
 export type DefinitionData = EnumData | ModelData
 
 export interface EnumData {
+  isSource: boolean
   name: string
   type: 'enum'
   values: string[]

@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { type NodeProps } from 'reactflow'
+import { Handle, type NodeProps, Position } from 'reactflow'
 
 import { type EnumData } from '../libs/prisma'
 
@@ -11,5 +11,10 @@ export function Enum({ data }: NodeProps<EnumData>) {
     return data.values.map((value) => [value])
   }, [data.values])
 
-  return <DefinitionTable rows={content} name={data.name} type="enum" />
+  return (
+    <>
+      <DefinitionTable rows={content} name={data.name} type="enum" />
+      {data.isSource ? <Handle position={Position.Bottom} type="source" /> : null}
+    </>
+  )
 }

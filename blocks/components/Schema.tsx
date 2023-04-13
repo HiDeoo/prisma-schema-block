@@ -13,12 +13,12 @@ const schemaNodeTypes = {
 }
 
 export function Schema({ definitions }: SchemaProps) {
-  const { edges, nodes: rawNodes } = useMemo(() => getDefinitionsSchema(definitions), [definitions])
+  const schema = useMemo(() => getDefinitionsSchema(definitions), [definitions])
 
   const store = useStoreApi()
   const reactFlowInstance = useReactFlow()
   const nodesInitialized = useNodesInitialized()
-  const [nodes, setNodes] = useNodesState(rawNodes)
+  const [nodes, setNodes] = useNodesState(schema.nodes)
 
   useEffect(() => {
     if (nodesInitialized) {
@@ -31,7 +31,7 @@ export function Schema({ definitions }: SchemaProps) {
     }
   }, [nodesInitialized, reactFlowInstance, setNodes, store])
 
-  return <ReactFlow edges={edges} nodes={nodes} nodeTypes={schemaNodeTypes} />
+  return <ReactFlow edges={schema.edges} nodes={nodes} nodeTypes={schemaNodeTypes} />
 }
 
 interface SchemaProps {

@@ -1,17 +1,23 @@
 import dagre from 'dagre'
 import { type Edge, type Node } from 'reactflow'
 
-import { type Definition, getDefinitionData, type DefinitionData } from './prisma'
+import { type Definition, getDefinitionData, type DefinitionData, type EnumData } from './prisma'
 
 export function getDefinitionsSchema(definitions: Definition[]) {
-  const nodes = definitions.map((definition) => ({
-    data: getDefinitionData(definition),
-    id: definition.name,
-    position: { x: 0, y: 0 },
-    type: definition.type,
-  }))
+  const nodesByIds: NodesByIds = new Map()
 
-  return { edges: getEnumEdges(nodes), nodes }
+  for (const definition of definitions) {
+    nodesByIds.set(definition.name, {
+      data: getDefinitionData(definition),
+      id: definition.name,
+      position: { x: 0, y: 0 },
+      type: definition.type,
+    })
+  }
+
+  const edges = getEnumEdges(nodesByIds)
+
+  return { edges, nodes: [...nodesByIds.values()] }
 }
 
 // TODO(HiDeoo) handle edges
@@ -38,12 +44,12 @@ export function getPositionedSchema(nodes: Node[]): Node[] {
   })
 }
 
-function getEnumEdges(nodes: Node<DefinitionData>[]) {
+function getEnumEdges(nodesByIds: NodesByIds) {
   const edges: Edge[] = []
 
-  const enumNodes = nodes.filter((node) => node.type === 'enum')
+  const enumNodes = [...nodesByIds.values()].filter(isEnumNode)
 
-  for (const node of nodes) {
+  for (const node of nodesByIds.values()) {
     if (node.data.type === 'enum') {
       continue
     }
@@ -52,6 +58,8 @@ function getEnumEdges(nodes: Node<DefinitionData>[]) {
       const enumNode = enumNodes.find((enumNode) => enumNode.data.name === type)
 
       if (enumNode) {
+        nodesByIds.set(enumNode.id, { ...enumNode, data: { ...enumNode.data, isSource: true } })
+
         edges.push({
           id: `edge-enum-${enumNode.data.name}-${node.data.name}-${name}`,
           source: enumNode.id,
@@ -64,3 +72,9 @@ function getEnumEdges(nodes: Node<DefinitionData>[]) {
 
   return edges
 }
+
+function isEnumNode(node: Node): node is Node<EnumData> {
+  return node.type === 'enum'
+}
+
+type NodesByIds = Map<string, Node<DefinitionData>>
