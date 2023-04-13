@@ -13,11 +13,16 @@
   & tr {
     & td {
       border-bottom: 1px solid var(--border-color-dimmed);
+      border-right: 1px solid var(--border-color-dimmed);
       padding: var(--padding);
       position: relative;
 
       &:first-child:not(:last-child) {
         font-weight: 600;
+      }
+
+      &:last-child {
+        border-right: 0;
       }
     }
 

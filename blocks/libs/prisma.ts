@@ -1,4 +1,13 @@
-import { type Block, type Enum, type Field, getSchema, type Model } from '@mrleebo/prisma-ast'
+import {
+  type Block,
+  type Enum,
+  type Field,
+  type Func,
+  getSchema,
+  type KeyValue,
+  type Model,
+  type Value,
+} from '@mrleebo/prisma-ast'
 
 export function getDefinitionsFromSchema(source: string): Definition[] {
   // TODO(HiDeoo) parse error handling
@@ -29,26 +38,54 @@ function getModelData(definition: Model): ModelData {
   for (const property of definition.properties) {
     // TODO(HiDeoo) export declare type Property = GroupedModelAttribute | ModelAttribute | Field;
     if (property.type === 'field') {
-      properties[property.name] = {
+      const data: ModelPropertyData = {
         isTarget: false,
         name: property.name,
         type: getPropertyType(property),
       }
-    }
 
-    // TODO(HiDeoo) attributes
+      const defaultValue = getPropertyDefaultValue(property)
+
+      if (defaultValue) {
+        data.defaultValue = defaultValue
+      }
+
+      properties[property.name] = data
+    }
   }
 
   return { name: definition.name, properties, type: 'model' }
 }
 
 function getPropertyType(property: Field) {
-  const type =
-    typeof property.fieldType === 'string'
-      ? property.fieldType
-      : `${property.fieldType.name}(${property.fieldType.params.join(', ')})`
+  const type = isFunc(property.fieldType) ? getFuncRepresentation(property.fieldType) : property.fieldType
 
   return `${type}${property.array ? '[]' : ''}${property.optional ? '?' : ''}`
+}
+
+function getPropertyDefaultValue(property: Field) {
+  const defaultArgument = property.attributes?.find((attribute) => attribute.name === 'default')?.args?.at(0)
+
+  if (!defaultArgument) {
+    return
+  }
+
+  if (isFunc(defaultArgument.value)) {
+    return getFuncRepresentation(defaultArgument.value)
+  } else if (
+    typeof defaultArgument.value === 'string' ||
+    typeof defaultArgument.value === 'number' ||
+    typeof defaultArgument.value === 'boolean'
+  ) {
+    return `${defaultArgument.value}`
+  }
+
+  return
+}
+
+function getFuncRepresentation(func: Func) {
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- func.params can be undefined
+  return `${func.name}(${(func.params ?? []).join(', ')})`
 }
 
 function isEnum(block: Block): block is Enum {
@@ -61,6 +98,10 @@ function isModel(block: Block): block is Model {
 
 function isDefinition(block: Block): block is Definition {
   return isEnum(block) || isModel(block)
+}
+
+function isFunc(value: KeyValue | Value): value is Func {
+  return typeof value === 'object' && (value as { type?: string }).type === 'function'
 }
 
 export type Definition = Enum | Model
@@ -80,6 +121,7 @@ export interface ModelData {
 }
 
 export interface ModelPropertyData {
+  defaultValue?: string
   isTarget: boolean
   name: string
   type: string

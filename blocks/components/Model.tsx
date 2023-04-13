@@ -20,11 +20,12 @@ export function Model({ data }: NodeProps<ModelData>) {
             {property.name}
           </td>
           <td>{property.type}</td>
+          <td>{property.defaultValue}</td>
         </tr>
       )
     },
     [data.name]
   )
 
-  return <TableNode className="model" cols={2} rowRenderer={rowRenderer} rows={properties} name={data.name} />
+  return <TableNode className="model" cols={3} rowRenderer={rowRenderer} rows={properties} name={data.name} />
 }
