@@ -4,5 +4,8 @@
   },
   "examples/example.prisma": {
     "default": "HiDeoo__prisma-schema-block__prisma-schema-block"
+  },
+  "examples/relations.prisma": {
+    "default": "HiDeoo__prisma-schema-block__prisma-schema-block"
   }
 }
