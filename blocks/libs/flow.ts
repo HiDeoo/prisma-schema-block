@@ -1,4 +1,4 @@
-import dagre from 'dagre'
+import ELK from 'elkjs/lib/elk.bundled.js'
 import { type Edge, type Node } from 'reactflow'
 
 import { type Definition, getDefinitionData, type DefinitionData, type EnumData } from './prisma'
@@ -20,26 +20,39 @@ export function getDefinitionsSchema(definitions: Definition[]) {
   return { edges, nodes: [...nodesByIds.values()] }
 }
 
-// TODO(HiDeoo) handle edges
-export function getPositionedSchema(nodes: Node[]): Node[] {
-  const graph = new dagre.graphlib.Graph()
-  graph.setGraph({ rankdir: 'TB' })
+export async function getPositionedNodes(nodes: Node[], edges: Edge[]): Promise<Node[]> {
+  const elk = new ELK()
 
-  for (const node of nodes) {
-    graph.setNode(node.id, { width: node.width, height: node.height })
-  }
-
-  dagre.layout(graph)
+  const layout = await elk.layout({
+    children: nodes.map((node) => ({
+      height: node.height ?? 0,
+      id: node.id,
+      width: node.width ?? 0,
+    })),
+    edges: edges.map((edge) => ({
+      id: edge.id,
+      sources: [edge.source],
+      targets: [edge.target],
+    })),
+    id: 'schema',
+    layoutOptions: { 'elk.algorithm': 'layered' },
+  })
 
   return nodes.map((node) => {
-    const positionedNode = graph.node(node.id)
+    const positionedNode = layout.children?.find((positionedNode) => positionedNode.id === node.id)
+
+    if (!positionedNode) {
+      return node
+    }
 
     return {
       ...node,
+      height: positionedNode.height ?? node.height ?? 0,
       position: {
-        x: positionedNode.x - (node.width ? node.width / 2 : 0),
-        y: positionedNode.y - (node.height ? node.height / 2 : 0),
+        x: positionedNode.x ?? 0,
+        y: positionedNode.y ?? 0,
       },
+      width: positionedNode.width ?? node.width ?? 0,
     }
   })
 }
@@ -78,6 +91,7 @@ function getEnumEdges(nodesByIds: NodesByIds) {
           source: enumNode.id,
           target: node.id,
           targetHandle: `${node.data.name}-${column.name}`,
+          type: 'smoothstep',
         })
       }
     }

@@ -1,7 +1,7 @@
 import { useEffect, useMemo } from 'react'
 import { ReactFlow, useNodesInitialized, useNodesState, useReactFlow, useStoreApi } from 'reactflow'
 
-import { getDefinitionsSchema, getPositionedSchema } from '../libs/flow'
+import { getDefinitionsSchema, getPositionedNodes } from '../libs/flow'
 import { type Definition } from '../libs/prisma'
 
 import { Enum } from './Enum'
@@ -21,15 +21,19 @@ export function Schema({ definitions }: SchemaProps) {
   const [nodes, setNodes] = useNodesState(schema.nodes)
 
   useEffect(() => {
-    if (nodesInitialized) {
+    async function positionNodes() {
       const { nodeInternals } = store.getState()
 
-      setNodes(getPositionedSchema([...nodeInternals.values()]))
+      setNodes(await getPositionedNodes([...nodeInternals.values()], schema.edges))
 
-      // TODO(HiDeoo)
+      // // TODO(HiDeoo)
       reactFlowInstance.fitView({ padding: 10 })
     }
-  }, [nodesInitialized, reactFlowInstance, setNodes, store])
+
+    if (nodesInitialized) {
+      positionNodes()
+    }
+  }, [nodesInitialized, reactFlowInstance, schema.edges, setNodes, store])
 
   return <ReactFlow edges={schema.edges} nodes={nodes} nodeTypes={schemaNodeTypes} />
 }
