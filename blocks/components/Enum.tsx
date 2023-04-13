@@ -1,20 +1,23 @@
-import { useMemo } from 'react'
 import { Handle, type NodeProps, Position } from 'reactflow'
 
 import { type EnumData } from '../libs/prisma'
 
-import { DefinitionTable } from './DefinitionTable'
+import { TableNode } from './TableNode'
 
 // TODO(HiDeoo) nis no values
 export function Enum({ data }: NodeProps<EnumData>) {
-  const content = useMemo(() => {
-    return data.values.map((value) => [value])
-  }, [data.values])
-
   return (
     <>
-      <DefinitionTable rows={content} name={data.name} type="enum" />
+      <TableNode className="enum" columnCount={1} name={data.name} rowRenderer={rowRenderer} rows={data.values} />
       {data.isSource ? <Handle position={Position.Bottom} type="source" /> : null}
     </>
+  )
+}
+
+function rowRenderer(value: EnumData['values'][number]) {
+  return (
+    <tr key={value}>
+      <td>{value}</td>
+    </tr>
   )
 }

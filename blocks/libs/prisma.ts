@@ -24,14 +24,18 @@ function getEnumData(definition: Enum): EnumData {
 }
 
 function getModelData(definition: Model): ModelData {
-  const columns: ModelData['columns'] = []
+  const columns: ModelData['columns'] = {}
 
   for (const property of definition.properties) {
     // TODO(HiDeoo) export declare type Property = GroupedModelAttribute | ModelAttribute | Field;
     if (property.type === 'field') {
       // TODO(HiDeoo) fieldType: string | Func;
-      // TODO(HiDeoo) remove as string cast
-      columns.push([property.name, property.fieldType as string])
+      columns[property.name] = {
+        isTarget: false,
+        name: property.name,
+        // TODO(HiDeoo) remove as string cast
+        type: property.fieldType as string,
+      }
     }
   }
 
@@ -61,7 +65,13 @@ export interface EnumData {
 }
 
 export interface ModelData {
-  columns: [name: string, type: string][]
+  columns: Record<ModelColumnData['name'], ModelColumnData>
   name: string
   type: 'model'
+}
+
+export interface ModelColumnData {
+  isTarget: boolean
+  name: string
+  type: string
 }

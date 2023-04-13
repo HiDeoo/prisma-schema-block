@@ -54,17 +54,30 @@ function getEnumEdges(nodesByIds: NodesByIds) {
       continue
     }
 
-    for (const [name, type] of node.data.columns) {
-      const enumNode = enumNodes.find((enumNode) => enumNode.data.name === type)
+    for (const column of Object.values(node.data.columns)) {
+      const enumNode = enumNodes.find((enumNode) => enumNode.data.name === column.type)
 
       if (enumNode) {
         nodesByIds.set(enumNode.id, { ...enumNode, data: { ...enumNode.data, isSource: true } })
+        nodesByIds.set(node.id, {
+          ...node,
+          data: {
+            ...node.data,
+            columns: {
+              ...node.data.columns,
+              [column.name]: {
+                ...column,
+                isTarget: true,
+              },
+            },
+          },
+        })
 
         edges.push({
-          id: `edge-enum-${enumNode.data.name}-${node.data.name}-${name}`,
+          id: `edge-enum-${enumNode.data.name}-${node.data.name}-${column.name}`,
           source: enumNode.id,
           target: node.id,
-          targetHandle: `${node.data.name}-${name}`,
+          targetHandle: `${node.data.name}-${column.name}`,
         })
       }
     }
