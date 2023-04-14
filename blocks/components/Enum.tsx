@@ -1,4 +1,4 @@
-import { Handle, type NodeProps, Position } from 'reactflow'
+import { type NodeProps } from 'reactflow'
 
 import { type EnumData } from '../libs/prisma'
 
@@ -7,10 +7,14 @@ import { TableNode } from './TableNode'
 // TODO(HiDeoo) nis no values
 export function Enum({ data }: NodeProps<EnumData>) {
   return (
-    <>
-      <TableNode className="enum" cols={1} name={data.name} rowRenderer={rowRenderer} rows={data.values} />
-      {data.isSource ? <Handle position={Position.Bottom} type="source" /> : null}
-    </>
+    <TableNode
+      className="enum"
+      cols={1}
+      isSource={data.isSource}
+      name={data.name}
+      rowRenderer={rowRenderer}
+      rows={data.values}
+    />
   )
 }
 

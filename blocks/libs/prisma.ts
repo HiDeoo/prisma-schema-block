@@ -54,13 +54,16 @@ function getModelData(definition: Model): ModelData {
     }
   }
 
-  return { name: definition.name, properties, type: 'model' }
+  return { isSource: false, name: definition.name, properties, type: 'model' }
 }
 
 function getPropertyType(property: Field) {
   const type = isFunc(property.fieldType) ? getFuncRepresentation(property.fieldType) : property.fieldType
 
-  return `${type}${property.array ? '[]' : ''}${property.optional ? '?' : ''}`
+  return {
+    computed: `${type}${property.array ? '[]' : ''}${property.optional ? '?' : ''}`,
+    raw: type,
+  }
 }
 
 function getPropertyDefaultValue(property: Field) {
@@ -115,6 +118,7 @@ export interface EnumData {
 }
 
 export interface ModelData {
+  isSource: boolean
   name: string
   properties: Record<ModelPropertyData['name'], ModelPropertyData>
   type: 'model'
@@ -124,5 +128,8 @@ export interface ModelPropertyData {
   defaultValue?: string
   isTarget: boolean
   name: string
-  type: string
+  type: {
+    computed: string
+    raw: string
+  }
 }

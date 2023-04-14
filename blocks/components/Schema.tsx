@@ -26,7 +26,7 @@ export function Schema({ definitions }: SchemaProps) {
 
       setNodes(await getPositionedNodes([...nodeInternals.values()], schema.edges))
 
-      // // TODO(HiDeoo)
+      // TODO(HiDeoo)
       reactFlowInstance.fitView({ padding: 10 })
     }
 

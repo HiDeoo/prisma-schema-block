@@ -3,6 +3,7 @@
   --border-color-dimmed: hsl(0 0% 45%);
   --padding: 0.2rem 0.5rem;
 
+  background-color: hsl(0 0% 98%);
   border: 2px solid var(--border-color);
   border-collapse: separate;
   border-radius: 0.4rem;

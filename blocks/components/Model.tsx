@@ -19,7 +19,7 @@ export function Model({ data }: NodeProps<ModelData>) {
             ) : null}
             {property.name}
           </td>
-          <td>{property.type}</td>
+          <td>{property.type.computed}</td>
           <td>{property.defaultValue}</td>
         </tr>
       )
@@ -27,5 +27,14 @@ export function Model({ data }: NodeProps<ModelData>) {
     [data.name]
   )
 
-  return <TableNode className="model" cols={3} rowRenderer={rowRenderer} rows={properties} name={data.name} />
+  return (
+    <TableNode
+      className="model"
+      cols={3}
+      isSource={data.isSource}
+      name={data.name}
+      rowRenderer={rowRenderer}
+      rows={properties}
+    />
+  )
 }

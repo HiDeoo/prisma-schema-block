@@ -1,7 +1,7 @@
-import ELK from 'elkjs/lib/elk.bundled.js'
+import ELK, { type ElkPort } from 'elkjs/lib/elk.bundled.js'
 import { type Edge, type Node } from 'reactflow'
 
-import { type Definition, getDefinitionData, type DefinitionData, type EnumData } from './prisma'
+import { type Definition, getDefinitionData, type DefinitionData, type EnumData, type ModelData } from './prisma'
 
 export function getDefinitionsSchema(definitions: Definition[]) {
   const nodesByIds: NodesByIds = new Map()
@@ -15,27 +15,43 @@ export function getDefinitionsSchema(definitions: Definition[]) {
     })
   }
 
-  const edges = getEnumEdges(nodesByIds)
+  const edges = [...getEnumEdges(nodesByIds), ...getModelEdges(nodesByIds)]
 
   return { edges, nodes: [...nodesByIds.values()] }
 }
 
-export async function getPositionedNodes(nodes: Node[], edges: Edge[]): Promise<Node[]> {
+export async function getPositionedNodes(nodes: Node<DefinitionData>[], edges: Edge[]): Promise<Node[]> {
   const elk = new ELK()
 
   const layout = await elk.layout({
-    children: nodes.map((node) => ({
-      height: node.height ?? 0,
-      id: node.id,
-      width: node.width ?? 0,
-    })),
+    children: nodes.map((node) => {
+      const ports: ElkPort[] = [{ id: node.id }]
+
+      if (isModelNode(node)) {
+        for (const property of Object.values(node.data.properties)) {
+          ports.push({ id: `${node.data.name}-${property.name}` })
+        }
+      }
+
+      return {
+        height: node.height ?? 0,
+        id: node.id,
+        ports,
+        width: node.width ?? 0,
+      }
+    }),
     edges: edges.map((edge) => ({
       id: edge.id,
-      sources: [edge.source],
-      targets: [edge.target],
+      sources: [edge.sourceHandle ?? edge.source],
+      targets: [edge.targetHandle ?? edge.target],
     })),
     id: 'schema',
-    layoutOptions: { 'elk.algorithm': 'layered' },
+    layoutOptions: {
+      'elk.algorithm': 'layered',
+      'elk.direction': 'RIGHT',
+      'elk.layered.spacing.nodeNodeBetweenLayers': '50',
+      'elk.spacing.nodeNode': '50',
+    },
   })
 
   return nodes.map((node) => {
@@ -68,32 +84,93 @@ function getEnumEdges(nodesByIds: NodesByIds) {
     }
 
     for (const property of Object.values(node.data.properties)) {
-      const enumNode = enumNodes.find((enumNode) => enumNode.data.name === property.type)
+      const enumNode = enumNodes.find((enumNode) => enumNode.data.name === property.type.raw)
 
-      if (enumNode) {
-        nodesByIds.set(enumNode.id, { ...enumNode, data: { ...enumNode.data, isSource: true } })
-        nodesByIds.set(node.id, {
-          ...node,
-          data: {
-            ...node.data,
-            properties: {
-              ...node.data.properties,
-              [property.name]: {
-                ...property,
-                isTarget: true,
-              },
+      if (!enumNode) {
+        continue
+      }
+
+      nodesByIds.set(enumNode.id, {
+        ...enumNode,
+        data: {
+          ...enumNode.data,
+          isSource: true,
+        },
+      })
+
+      nodesByIds.set(node.id, {
+        ...node,
+        data: {
+          ...node.data,
+          properties: {
+            ...node.data.properties,
+            [property.name]: {
+              ...property,
+              isTarget: true,
             },
           },
-        })
+        },
+      })
 
-        edges.push({
-          id: `edge-enum-${enumNode.data.name}-${node.data.name}-${property.name}`,
-          source: enumNode.id,
-          target: node.id,
-          targetHandle: `${node.data.name}-${property.name}`,
-          type: 'smoothstep',
-        })
+      edges.push({
+        id: `edge-enum-${enumNode.data.name}-${node.data.name}-${property.name}`,
+        source: enumNode.id,
+        target: node.id,
+        targetHandle: `${node.data.name}-${property.name}`,
+      })
+    }
+  }
+
+  return edges
+}
+
+function getModelEdges(nodesByIds: NodesByIds) {
+  const edges: Edge[] = []
+
+  const modelNodes = [...nodesByIds.values()].filter(isModelNode)
+
+  for (const node of nodesByIds.values()) {
+    if (node.data.type === 'enum') {
+      continue
+    }
+
+    for (const property of Object.values(node.data.properties)) {
+      const sourceNodeId = modelNodes.find((node) => node.id === property.type.raw)?.id
+      const sourceNode = nodesByIds.get(sourceNodeId ?? '')
+      const currentNode = nodesByIds.get(node.id)
+
+      if (!sourceNode || !currentNode || !isModelNode(currentNode)) {
+        continue
       }
+
+      nodesByIds.set(sourceNode.id, {
+        ...sourceNode,
+        data: {
+          ...sourceNode.data,
+          isSource: true,
+        },
+      })
+
+      nodesByIds.set(node.id, {
+        ...currentNode,
+        data: {
+          ...currentNode.data,
+          properties: {
+            ...currentNode.data.properties,
+            [property.name]: {
+              ...property,
+              isTarget: true,
+            },
+          },
+        },
+      })
+
+      edges.push({
+        id: `edge-relation-${node.id}-${property.name}-${sourceNode.id}`,
+        source: sourceNode.id,
+        target: node.id,
+        targetHandle: `${node.data.name}-${property.name}`,
+      })
     }
   }
 
@@ -104,4 +181,8 @@ function isEnumNode(node: Node): node is Node<EnumData> {
   return node.type === 'enum'
 }
 
-type NodesByIds = Map<string, Node<DefinitionData>>
+function isModelNode(node: Node): node is Node<ModelData> {
+  return node.type === 'model'
+}
+
+type NodesByIds = Map<Node<DefinitionData>['id'], Node<DefinitionData>>
