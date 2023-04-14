@@ -25,17 +25,32 @@ export async function getPositionedNodes(nodes: Node<DefinitionData>[], edges: E
 
   const layout = await elk.layout({
     children: nodes.map((node) => {
-      const ports: ElkPort[] = [{ id: node.id }]
+      const ports: ElkPort[] = [
+        {
+          id: node.id,
+          layoutOptions: {
+            'elk.port.side': 'SOUTH',
+          },
+        },
+      ]
 
       if (isModelNode(node)) {
         for (const property of Object.values(node.data.properties)) {
-          ports.push({ id: `${node.data.name}-${property.name}` })
+          ports.push({
+            id: `${node.data.name}-${property.name}`,
+            layoutOptions: {
+              'elk.port.side': 'EAST',
+            },
+          })
         }
       }
 
       return {
         height: node.height ?? 0,
         id: node.id,
+        layoutOptions: {
+          'elk.portConstraints': 'FIXED_SIDE',
+        },
         ports,
         width: node.width ?? 0,
       }

@@ -14,19 +14,19 @@ export function Model({ data }: NodeProps<ModelData>) {
     (property: ModelPropertyData) => {
       return (
         <tr key={property.name}>
+          <td>{property.name}</td>
+          <td>{property.type.computed}</td>
           <td>
+            {property.defaultValue}
             {property.isTarget ? (
               <Handle
                 id={`${data.name}-${property.name}`}
                 isConnectable={false}
-                position={Position.Left}
+                position={Position.Right}
                 type="target"
               />
             ) : null}
-            {property.name}
           </td>
-          <td>{property.type.computed}</td>
-          <td>{property.defaultValue}</td>
         </tr>
       )
     },
