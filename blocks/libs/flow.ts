@@ -4,6 +4,13 @@ import { type Edge, type Node } from 'reactflow'
 import { type Definition, getDefinitionData, type DefinitionData, type EnumData, type ModelData } from './prisma'
 
 export function getDefinitionsSchema(definitions: Definition[]) {
+  if (definitions.length === 0) {
+    return {
+      edges: [],
+      nodes: [{ data: {}, id: 'empty', position: { x: 0, y: 0 }, type: 'message' }],
+    }
+  }
+
   const nodesByIds: NodesByIds = new Map()
 
   for (const definition of definitions) {

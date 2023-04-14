@@ -5,11 +5,13 @@ import { getDefinitionsSchema, getPositionedNodes } from '../libs/flow'
 import { type Definition } from '../libs/prisma'
 
 import { Enum } from './Enum'
+import { Message } from './Message'
 import { Model } from './Model'
 import styles from './Schema.module.css'
 
 const schemaNodeTypes = {
   enum: Enum,
+  message: Message,
   model: Model,
 }
 

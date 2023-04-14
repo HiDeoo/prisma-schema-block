@@ -6,8 +6,9 @@ import { ReactFlowProvider } from 'reactflow'
 import { Schema } from './components/Schema'
 import { getDefinitionsFromSchema } from './libs/prisma'
 
+import './App.css'
+
 // TODO(HiDeoo) error boundary
-// TODO(HiDeoo) nis
 // TODO(HiDeoo) viewport
 // TODO(HiDeoo) loading / suspense
 export default function App({ content }: FileBlockProps) {
@@ -18,6 +19,7 @@ export default function App({ content }: FileBlockProps) {
 
   return (
     <ReactFlowProvider>
+      {/* // TODO(HiDeoo)  */}
       <div style={{ width: '100vw', height: '100vh' }}>
         <Schema definitions={definitions} />
       </div>

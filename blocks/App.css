@@ -1,0 +1,5 @@
+:root {
+  --border-color: hsl(0 0% 15%);
+  --border-color-dimmed: hsl(0 0% 45%);
+  --padding: 0.2rem 0.5rem;
+}
