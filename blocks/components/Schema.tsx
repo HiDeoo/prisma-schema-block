@@ -26,7 +26,7 @@ export function Schema({ definitions }: SchemaProps) {
   const store = useStoreApi()
   const reactFlowInstance = useReactFlow()
   const nodesInitialized = useNodesInitialized()
-  const [nodes, setNodes] = useNodesState(schema.nodes)
+  const [nodes, setNodes, onNodesChange] = useNodesState(schema.nodes)
 
   useEffect(() => {
     async function positionNodes() {
@@ -51,6 +51,7 @@ export function Schema({ definitions }: SchemaProps) {
       nodes={nodes}
       nodesConnectable={false}
       nodeTypes={schemaNodeTypes}
+      onNodesChange={onNodesChange}
     />
   )
 }
