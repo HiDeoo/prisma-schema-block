@@ -9,13 +9,18 @@
   border-radius: 0.4rem;
   border-spacing: 0;
   font-size: 1rem;
+  min-width: 150px;
 
   & tr {
     & td {
       border-bottom: 1px solid var(--border-color-dimmed);
       border-right: 1px solid var(--border-color-dimmed);
+      max-width: 400px;
+      overflow: hidden;
       padding: var(--padding);
       position: relative;
+      text-overflow: ellipsis;
+      white-space: nowrap;
 
       &:first-child:not(:last-child) {
         font-weight: 600;

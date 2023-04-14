@@ -3,8 +3,6 @@ import clsx from 'clsx'
 import { Handle, Position } from './Handle'
 import styles from './TableNode.module.css'
 
-// TODO(HiDeoo) min width
-// TODO(HiDeoo) max width
 export function TableNode<TRow>({ className, color, cols, isSource, name, rowRenderer, rows }: TableNodeProps<TRow>) {
   return (
     <>
