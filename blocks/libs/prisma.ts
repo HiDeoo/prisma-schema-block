@@ -25,7 +25,8 @@ export function getDefinitionData(definition: Definition): DefinitionData {
 function getEnumData(definition: Enum): EnumData {
   const values: EnumData['values'] = []
 
-  for (const enumerator of definition.enumerators) {
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- definition.enumerators can be undefined for empty enums.
+  for (const enumerator of definition.enumerators ?? []) {
     if (enumerator.type === 'enumerator') {
       values.push(enumerator.name)
     }
@@ -43,7 +44,8 @@ function getEnumData(definition: Enum): EnumData {
 function getModelData(definition: Model): ModelData {
   const properties: ModelData['properties'] = {}
 
-  for (const property of definition.properties) {
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- definition.properties can be undefined for empty models.
+  for (const property of definition.properties ?? []) {
     // TODO(HiDeoo) export declare type Property = GroupedModelAttribute | ModelAttribute | Field;
     if (property.type === 'field') {
       const data: ModelPropertyData = {

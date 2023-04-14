@@ -6,7 +6,6 @@ import { type ModelPropertyData, type ModelData } from '../libs/prisma'
 import { Handle, Position } from './Handle'
 import { TableNode } from './TableNode'
 
-// TODO(HiDeoo) nis no rows?
 export function Model({ data }: NodeProps<ModelData>) {
   const properties = useMemo(() => Object.values(data.properties), [data.properties])
 

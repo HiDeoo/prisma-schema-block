@@ -4,7 +4,6 @@ import { type EnumData } from '../libs/prisma'
 
 import { TableNode } from './TableNode'
 
-// TODO(HiDeoo) nis no values
 export function Enum({ data }: NodeProps<EnumData>) {
   return (
     <TableNode
