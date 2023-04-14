@@ -1,5 +1,11 @@
 :root {
   --border-color: hsl(0 0% 15%);
   --border-color-dimmed: hsl(0 0% 45%);
+  --border-radius: 0.4rem;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
   --padding: 0.2rem 0.5rem;
+}
+
+.app {
+  height: 100%;
 }

@@ -4,14 +4,14 @@ import { ReactFlow, useNodesInitialized, useNodesState, useReactFlow, useStoreAp
 import { getDefinitionsSchema, getPositionedNodes } from '../libs/flow'
 import { type Definition } from '../libs/prisma'
 
+import { Empty } from './Empty'
 import { Enum } from './Enum'
-import { Message } from './Message'
 import { Model } from './Model'
 import styles from './Schema.module.css'
 
 const schemaNodeTypes = {
+  empty: Empty,
   enum: Enum,
-  message: Message,
   model: Model,
 }
 

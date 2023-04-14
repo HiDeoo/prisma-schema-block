@@ -1,0 +1,21 @@
+.message {
+  --red: hsl(0 70% 35%);
+
+  background-color: hsl(0 96% 89%);
+  border: 2px solid var(--red);
+  border-radius: var(--border-radius);
+  color: var(--red);
+  font-weight: 700;
+  padding: var(--padding);
+}
+
+.error {
+  background-color: hsl(0 93% 94%);
+  border: 2px solid var(--red);
+  border-radius: var(--border-radius);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  font-weight: 400;
+  margin-block: 0.2rem;
+  padding: var(--padding);
+}

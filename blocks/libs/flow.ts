@@ -7,7 +7,7 @@ export function getDefinitionsSchema(definitions: Definition[]) {
   if (definitions.length === 0) {
     return {
       edges: [],
-      nodes: [{ data: {}, id: 'empty', position: { x: 0, y: 0 }, type: 'message' }],
+      nodes: [{ data: {}, id: 'empty', position: { x: 0, y: 0 }, type: 'empty' }],
     }
   }
 

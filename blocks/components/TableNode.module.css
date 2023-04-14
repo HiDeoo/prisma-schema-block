@@ -2,7 +2,7 @@
   background-color: hsl(0 0% 98%);
   border: 2px solid var(--border-color);
   border-collapse: separate;
-  border-radius: 0.4rem;
+  border-radius: var(--border-radius);
   border-spacing: 0;
   font-size: 1rem;
   min-width: 150px;
@@ -28,7 +28,7 @@
 
       &:not(:first-child) {
         font-size: 0.8rem;
-        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+        font-family: var(--mono);
       }
     }
 

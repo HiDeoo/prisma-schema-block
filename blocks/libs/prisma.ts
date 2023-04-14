@@ -12,7 +12,6 @@ import {
 import { getNodeColor } from './color'
 
 export function getDefinitionsFromSchema(source: string): Definition[] {
-  // TODO(HiDeoo) parse error handling
   const schema = getSchema(source)
 
   return schema.list.filter(isDefinition)

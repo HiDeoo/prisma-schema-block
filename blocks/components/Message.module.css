@@ -1,6 +1,0 @@
-.message {
-  background-color: hsl(0 96% 89%);
-  border: 2px solid var(--border-color);
-  border-radius: 0.4rem;
-  padding: var(--padding);
-}
