@@ -34,8 +34,9 @@ export function Schema({ definitions }: SchemaProps) {
 
       setNodes(await getPositionedNodes([...nodeInternals.values()], schema.edges))
 
-      // TODO(HiDeoo)
-      reactFlowInstance.fitView({ padding: 10 })
+      setTimeout(() => {
+        reactFlowInstance.fitView({ padding: 0.2 })
+      }, 25)
     }
 
     if (nodesInitialized) {
