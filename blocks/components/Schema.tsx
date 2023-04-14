@@ -6,10 +6,18 @@ import { type Definition } from '../libs/prisma'
 
 import { Enum } from './Enum'
 import { Model } from './Model'
+import styles from './Schema.module.css'
 
 const schemaNodeTypes = {
   enum: Enum,
   model: Model,
+}
+
+const defaultEdgeOptions = {
+  animated: true,
+  pathOptions: {
+    curvature: 0.3,
+  },
 }
 
 export function Schema({ definitions }: SchemaProps) {
@@ -35,7 +43,16 @@ export function Schema({ definitions }: SchemaProps) {
     }
   }, [nodesInitialized, reactFlowInstance, schema.edges, setNodes, store])
 
-  return <ReactFlow edges={schema.edges} nodes={nodes} nodeTypes={schemaNodeTypes} />
+  return (
+    <ReactFlow
+      className={styles.schema}
+      defaultEdgeOptions={defaultEdgeOptions}
+      edges={schema.edges}
+      nodes={nodes}
+      nodesConnectable={false}
+      nodeTypes={schemaNodeTypes}
+    />
+  )
 }
 
 interface SchemaProps {

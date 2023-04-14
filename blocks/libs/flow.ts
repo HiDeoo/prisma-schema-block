@@ -49,8 +49,7 @@ export async function getPositionedNodes(nodes: Node<DefinitionData>[], edges: E
     layoutOptions: {
       'elk.algorithm': 'layered',
       'elk.direction': 'RIGHT',
-      'elk.layered.spacing.nodeNodeBetweenLayers': '50',
-      'elk.spacing.nodeNode': '50',
+      'elk.layered.spacing.baseValue': '60',
     },
   })
 

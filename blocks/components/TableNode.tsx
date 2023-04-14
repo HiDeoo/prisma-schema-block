@@ -1,6 +1,6 @@
 import clsx from 'clsx'
-import { Handle, Position } from 'reactflow'
 
+import { Handle, Position } from './Handle'
 import styles from './TableNode.module.css'
 
 // TODO(HiDeoo) min width
@@ -16,7 +16,7 @@ export function TableNode<TRow>({ className, cols, isSource, name, rowRenderer, 
         </thead>
         <tbody>{rows.map(rowRenderer)}</tbody>
       </table>
-      {isSource ? <Handle position={Position.Bottom} type="source" /> : null}
+      {isSource ? <Handle isConnectable={false} position={Position.Bottom} type="source" /> : null}
     </>
   )
 }
