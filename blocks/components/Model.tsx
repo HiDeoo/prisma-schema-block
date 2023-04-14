@@ -36,6 +36,7 @@ export function Model({ data }: NodeProps<ModelData>) {
   return (
     <TableNode
       className="model"
+      color={data.color}
       cols={3}
       isSource={data.isSource}
       name={data.name}

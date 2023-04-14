@@ -5,10 +5,10 @@ import styles from './TableNode.module.css'
 
 // TODO(HiDeoo) min width
 // TODO(HiDeoo) max width
-export function TableNode<TRow>({ className, cols, isSource, name, rowRenderer, rows }: TableNodeProps<TRow>) {
+export function TableNode<TRow>({ className, color, cols, isSource, name, rowRenderer, rows }: TableNodeProps<TRow>) {
   return (
     <>
-      <table className={clsx(styles.table, className)}>
+      <table className={clsx(styles.table, className)} style={{ '--bg-color': color }}>
         <thead className={styles.header}>
           <tr>
             <th colSpan={cols}>{name}</th>
@@ -23,6 +23,7 @@ export function TableNode<TRow>({ className, cols, isSource, name, rowRenderer, 
 
 interface TableNodeProps<TRow> {
   className?: string
+  color: string
   cols: number
   isSource: boolean
   name: string

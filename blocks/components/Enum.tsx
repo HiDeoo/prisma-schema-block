@@ -9,6 +9,7 @@ export function Enum({ data }: NodeProps<EnumData>) {
   return (
     <TableNode
       className="enum"
+      color={data.color}
       cols={1}
       isSource={data.isSource}
       name={data.name}

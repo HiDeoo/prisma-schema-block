@@ -1,13 +1,6 @@
 .schema {
   & :global(.react-flow__edge-path) {
     pointer-events: all;
-    stroke: hsl(0 0% 45%);
     stroke-width: 2px;
-  }
-
-  & :global(.react-flow__edge.selected .react-flow__edge-path),
-  & :global(.react-flow__edge:focus .react-flow__edge-path),
-  & :global(.react-flow__edge:focus-visible .react-flow__edge-path) {
-    stroke: hsl(221 83% 53%);
   }
 }

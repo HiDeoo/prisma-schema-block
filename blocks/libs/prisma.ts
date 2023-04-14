@@ -9,6 +9,8 @@ import {
   type Value,
 } from '@mrleebo/prisma-ast'
 
+import { getNodeColor } from './color'
+
 export function getDefinitionsFromSchema(source: string): Definition[] {
   // TODO(HiDeoo) parse error handling
   const schema = getSchema(source)
@@ -29,7 +31,13 @@ function getEnumData(definition: Enum): EnumData {
     }
   }
 
-  return { isSource: false, name: definition.name, type: 'enum', values }
+  return {
+    color: getNodeColor(),
+    isSource: false,
+    name: definition.name,
+    type: 'enum',
+    values,
+  }
 }
 
 function getModelData(definition: Model): ModelData {
@@ -54,7 +62,13 @@ function getModelData(definition: Model): ModelData {
     }
   }
 
-  return { isSource: false, name: definition.name, properties, type: 'model' }
+  return {
+    color: getNodeColor(),
+    isSource: false,
+    name: definition.name,
+    properties,
+    type: 'model',
+  }
 }
 
 function getPropertyType(property: Field) {
@@ -87,7 +101,7 @@ function getPropertyDefaultValue(property: Field) {
 }
 
 function getFuncRepresentation(func: Func) {
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- func.params can be undefined
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- func.params can be undefined.
   return `${func.name}(${(func.params ?? []).join(', ')})`
 }
 
@@ -110,16 +124,12 @@ function isFunc(value: KeyValue | Value): value is Func {
 export type Definition = Enum | Model
 export type DefinitionData = EnumData | ModelData
 
-export interface EnumData {
-  isSource: boolean
-  name: string
+export interface EnumData extends BaseData {
   type: 'enum'
   values: string[]
 }
 
-export interface ModelData {
-  isSource: boolean
-  name: string
+export interface ModelData extends BaseData {
   properties: Record<ModelPropertyData['name'], ModelPropertyData>
   type: 'model'
 }
@@ -132,4 +142,11 @@ export interface ModelPropertyData {
     computed: string
     raw: string
   }
+}
+
+interface BaseData {
+  color: string
+  isSource: boolean
+  name: string
+  type: string
 }

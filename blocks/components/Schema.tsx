@@ -14,7 +14,7 @@ const schemaNodeTypes = {
 }
 
 const defaultEdgeOptions = {
-  animated: true,
+  animated: false,
   pathOptions: {
     curvature: 0.3,
   },

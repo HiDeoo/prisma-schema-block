@@ -39,18 +39,10 @@
 
 .header {
   & th {
-    background-color: hsl(0 0% 83%);
+    background-color: var(--bg-color);
     border-bottom: 2px solid var(--border-color);
     border-top-left-radius: 0.25rem;
     border-top-right-radius: 0.25rem;
     padding: var(--padding);
-
-    :global(.enum) & {
-      background-color: hsl(45 100% 90%);
-    }
-
-    :global(.model) & {
-      background-color: hsl(213 100% 90%);
-    }
   }
 }

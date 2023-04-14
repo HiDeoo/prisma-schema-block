@@ -129,6 +129,7 @@ function getEnumEdges(nodesByIds: NodesByIds) {
       edges.push({
         id: `edge-enum-${enumNode.data.name}-${node.data.name}-${property.name}`,
         source: enumNode.id,
+        style: { stroke: enumNode.data.color },
         target: node.id,
         targetHandle: `${node.data.name}-${property.name}`,
       })
@@ -182,6 +183,7 @@ function getModelEdges(nodesByIds: NodesByIds) {
       edges.push({
         id: `edge-relation-${node.id}-${property.name}-${sourceNode.id}`,
         source: sourceNode.id,
+        style: { stroke: sourceNode.data.color },
         target: node.id,
         targetHandle: `${node.data.name}-${property.name}`,
       })
