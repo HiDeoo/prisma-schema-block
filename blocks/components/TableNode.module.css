@@ -24,6 +24,11 @@
       &:last-child {
         border-right: 0;
       }
+
+      &:not(:first-child) {
+        font-size: 0.8rem;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+      }
     }
 
     &:last-child td {
