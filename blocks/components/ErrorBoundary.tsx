@@ -7,6 +7,8 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
   override state: ErrorBoundaryState = {}
 
   static getDerivedStateFromError(error: Error) {
+    console.error(error)
+
     return { error }
   }
 
