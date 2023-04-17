@@ -1,5 +1,14 @@
 import { useEffect, useMemo } from 'react'
-import { Controls, ReactFlow, useNodesInitialized, useNodesState, useReactFlow, useStoreApi } from 'reactflow'
+import {
+  Background,
+  BackgroundVariant,
+  Controls,
+  ReactFlow,
+  useNodesInitialized,
+  useNodesState,
+  useReactFlow,
+  useStoreApi,
+} from 'reactflow'
 
 import { getDefinitionsSchema, getPositionedNodes } from '../libs/flow'
 import { type Definition } from '../libs/prisma'
@@ -52,11 +61,10 @@ export function Schema({ definitions }: SchemaProps) {
       defaultEdgeOptions={defaultEdgeOptions}
       edges={schema.edges}
       nodes={nodes}
-      // nodesConnectable={true}
-      // nodesDraggable={true}
       nodeTypes={schemaNodeTypes}
       onNodesChange={onNodesChange}
     >
+      <Background color="hsl(0 0% 45%)" variant={BackgroundVariant.Dots} />
       <Controls position="top-right" />
     </ReactFlow>
   )
