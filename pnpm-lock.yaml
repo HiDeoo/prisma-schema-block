@@ -7,9 +7,6 @@ dependencies:
   '@mrleebo/prisma-ast':
     specifier: 0.5.1
     version: 0.5.1
-  clsx:
-    specifier: 1.2.1
-    version: 1.2.1
   elkjs:
     specifier: 0.8.2
     version: 0.8.2
@@ -1880,11 +1877,6 @@ packages:
       slice-ansi: 5.0.0
       string-width: 5.1.2
     dev: true
-
-  /clsx@1.2.1:
-    resolution: {integrity: sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==}
-    engines: {node: '>=6'}
-    dev: false
 
   /color-convert@1.9.3:
     resolution: {integrity: sha512-QfAUtd+vFdAtFQcC8CCyYt1fYWxSqAiK2cSD6zDB8N3cpsEBAvRxp9zOGg6G/SHHJYAT88/az/IuDGALsNVbGg==}

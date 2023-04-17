@@ -1,12 +1,10 @@
-import clsx from 'clsx'
-
 import { Handle, Position } from './Handle'
 import styles from './TableNode.module.css'
 
-export function TableNode<TRow>({ className, color, cols, isSource, name, rowRenderer, rows }: TableNodeProps<TRow>) {
+export function TableNode<TRow>({ color, cols, isSource, name, rowRenderer, rows }: TableNodeProps<TRow>) {
   return (
     <>
-      <table className={clsx(styles.table, className)} style={{ '--bg-color': color }}>
+      <table className={styles.table} style={{ '--bg-color': color }}>
         <thead className={styles.header}>
           <tr>
             <th colSpan={cols}>{name}</th>
@@ -20,7 +18,6 @@ export function TableNode<TRow>({ className, color, cols, isSource, name, rowRen
 }
 
 interface TableNodeProps<TRow> {
-  className?: string
   color: string
   cols: number
   isSource: boolean
