@@ -9,9 +9,6 @@ import { Schema } from './Schema'
 export function Flow({ schema }: FlowProps) {
   const definitions = getDefinitionsFromSchema(schema)
 
-  // FIXME(HiDeoo)
-  console.error('🚨 [App.tsx:11] definitions:', definitions)
-
   return (
     <ReactFlowProvider>
       <Schema definitions={definitions} />

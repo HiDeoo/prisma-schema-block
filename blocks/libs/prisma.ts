@@ -45,7 +45,6 @@ function getModelData(definition: Model): ModelData {
 
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- definition.properties can be undefined for empty models.
   for (const property of definition.properties ?? []) {
-    // TODO(HiDeoo) export declare type Property = GroupedModelAttribute | ModelAttribute | Field;
     if (property.type === 'field') {
       const data: ModelPropertyData = {
         isTarget: false,
