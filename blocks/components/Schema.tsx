@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from 'react'
-import { ReactFlow, useNodesInitialized, useNodesState, useReactFlow, useStoreApi } from 'reactflow'
+import { Controls, ReactFlow, useNodesInitialized, useNodesState, useReactFlow, useStoreApi } from 'reactflow'
 
 import { getDefinitionsSchema, getPositionedNodes } from '../libs/flow'
 import { type Definition } from '../libs/prisma'
@@ -52,10 +52,13 @@ export function Schema({ definitions }: SchemaProps) {
       defaultEdgeOptions={defaultEdgeOptions}
       edges={schema.edges}
       nodes={nodes}
-      nodesConnectable={false}
+      // nodesConnectable={true}
+      // nodesDraggable={true}
       nodeTypes={schemaNodeTypes}
       onNodesChange={onNodesChange}
-    />
+    >
+      <Controls position="top-right" />
+    </ReactFlow>
   )
 }
 
