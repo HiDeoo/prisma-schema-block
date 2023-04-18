@@ -8,7 +8,7 @@
     bottom: -4px;
   }
 
-  &:global(.react-flow__handle-left) {
-    left: -6px;
+  &:global(.react-flow__handle-right) {
+    right: -6px;
   }
 }

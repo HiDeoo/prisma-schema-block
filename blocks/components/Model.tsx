@@ -13,10 +13,14 @@ export function Model({ data }: NodeProps<ModelData>) {
     (property: ModelPropertyData) => {
       return (
         <tr key={property.name}>
-          <td>{property.name}</td>
-          <td>{property.type.computed}</td>
           <td>
-            {property.defaultValue}
+            <div>{property.name}</div>
+          </td>
+          <td>
+            <div>{property.type.computed}</div>
+          </td>
+          <td>
+            <div>{property.defaultValue}</div>
             {property.isTarget ? (
               <Handle
                 id={`${data.name}-${property.name}`}

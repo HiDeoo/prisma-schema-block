@@ -20,7 +20,9 @@ export function Enum({ data }: NodeProps<EnumData>) {
 function rowRenderer(value: EnumData['values'][number]) {
   return (
     <tr key={value}>
-      <td>{value}</td>
+      <td>
+        <div>{value}</div>
+      </td>
     </tr>
   )
 }

@@ -12,11 +12,8 @@
       border-bottom: 1px solid var(--border-color-dimmed);
       border-right: 1px solid var(--border-color-dimmed);
       max-width: 400px;
-      overflow: hidden;
       padding: var(--padding);
       position: relative;
-      text-overflow: ellipsis;
-      white-space: nowrap;
 
       &:first-child:not(:last-child) {
         font-weight: 600;
@@ -29,6 +26,12 @@
       &:not(:first-child) {
         font-size: 0.8rem;
         font-family: var(--mono);
+      }
+
+      & div {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
     }
 
