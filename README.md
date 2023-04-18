@@ -15,7 +15,7 @@
 
 ## Features
 
-A [GitHub Block](https://blocks.githubnext.com) to preview Prisma schemas in Markdown files or as a custom file renderer in GitHub.
+A [GitHub Block](https://blocks.githubnext.com) to preview [Prisma](https://www.prisma.io) schemas in Markdown files or as a custom file renderer in GitHub.
 
 > **Warning**
 >
@@ -33,12 +33,12 @@ GitHub Blocks is still in **early development** and same goes for this GitHub Bl
 >
 > The examples below require a GitHub account with access to the GitHub Blocks technical preview. Some screenshots are provided as an alternative.
 
-- [Embedded in a README file.](https://blocks.githubnext.com/HiDeoo/prisma-schema-block/blob/main/examples/README.md)
 - [As a file renderer for a Prisma schema file.](https://blocks.githubnext.com/HiDeoo/prisma-schema-block/blob/main/examples/example.prisma)
+- [Embedded in a README file.](https://blocks.githubnext.com/HiDeoo/prisma-schema-block/blob/main/examples/README.md)
 
-![Embedded in a README file.](https://user-images.githubusercontent.com/494699/219106150-2e27a48c-3012-47bb-8260-64918aec6af2.png)
+![As a file renderer for a Prisma schema file.](https://user-images.githubusercontent.com/494699/232774015-9422b2da-d034-4d79-958a-c57564a62e57.png)
 
-![As a file renderer for a Prisma schema file.](https://user-images.githubusercontent.com/494699/219106513-c7d3c4e4-34e3-496d-9a30-3931c48413ac.png)
+![Embedded in a README file.](https://user-images.githubusercontent.com/494699/232774054-1c86d462-e2d4-4121-b181-fa0d4f7f0112.png)
 
 ## License
 
