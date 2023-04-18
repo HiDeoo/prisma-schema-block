@@ -1,6 +1,5 @@
 import React from 'react'
 
-import styles from './ErrorBoundary.module.css'
 import { ErrorMessage } from './ErrorMessage'
 
 export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
@@ -17,7 +16,7 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
 
     if (error) {
       return (
-        <div className={styles.error}>
+        <div className="errorBoundary">
           <ErrorMessage message="Something went wrong." error={error} />
         </div>
       )

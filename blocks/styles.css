@@ -1,0 +1,109 @@
+:root {
+  --border-color: hsl(0 0% 15%);
+  --border-color-dimmed: hsl(0 0% 45%);
+  --border-radius: 0.4rem;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  --padding: 0.2rem 0.5rem;
+  --red: hsl(0 70% 35%);
+}
+
+.app {
+  height: 100%;
+}
+
+.table {
+  background-color: hsl(0 0% 98%);
+  border: 2px solid var(--border-color);
+  border-collapse: separate;
+  border-radius: var(--border-radius);
+  border-spacing: 0;
+  font-size: 1rem;
+  min-width: 150px;
+}
+
+.table th {
+  background-color: var(--bg-color);
+  border-bottom: 2px solid var(--border-color);
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+  padding: var(--padding);
+}
+
+.table:has(tbody:empty) th {
+  border-bottom: 0;
+  border-bottom-left-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+}
+
+.table td {
+  border-bottom: 1px solid var(--border-color-dimmed);
+  border-right: 1px solid var(--border-color-dimmed);
+  max-width: 400px;
+  padding: var(--padding);
+  position: relative;
+}
+
+.table td:first-child:not(:last-child) {
+  font-weight: 600;
+}
+
+.table td:last-child {
+  border-right: 0;
+}
+
+.table td:not(:first-child) {
+  font-size: 0.8rem;
+  font-family: var(--mono);
+}
+
+.table td div {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.table tr:last-child td {
+  border-bottom: 0;
+}
+
+.handle {
+  background-color: hsl(0 0% 25%);
+  border: 2px solid hsl(0 0% 98%);
+  height: 10px;
+  width: 10px;
+}
+
+.handle.react-flow__handle-right {
+  right: -6px;
+}
+
+.react-flow__edge-path {
+  pointer-events: all;
+  stroke-width: 2px;
+}
+
+.errorBoundary {
+  display: grid;
+  height: 100%;
+  place-items: center;
+}
+
+.errorMessage {
+  background-color: hsl(0 96% 89%);
+  border: 2px solid var(--red);
+  border-radius: var(--border-radius);
+  color: var(--red);
+  font-weight: 700;
+  padding: var(--padding);
+}
+
+.error {
+  background-color: hsl(0 93% 94%);
+  border: 2px solid var(--red);
+  border-radius: var(--border-radius);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  font-weight: 400;
+  margin-block: 0.2rem;
+  padding: var(--padding);
+}

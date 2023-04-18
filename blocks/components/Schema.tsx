@@ -16,7 +16,6 @@ import { type Definition } from '../libs/prisma'
 import { Empty } from './Empty'
 import { Enum } from './Enum'
 import { Model } from './Model'
-import styles from './Schema.module.css'
 
 const schemaNodeTypes = {
   empty: Empty,
@@ -57,7 +56,6 @@ export function Schema({ definitions }: SchemaProps) {
 
   return (
     <ReactFlow
-      className={styles.schema}
       defaultEdgeOptions={defaultEdgeOptions}
       edges={schema.edges}
       nodes={nodes}

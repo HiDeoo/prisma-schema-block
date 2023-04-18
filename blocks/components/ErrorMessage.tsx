@@ -1,10 +1,8 @@
-import styles from './ErrorMessage.module.css'
-
 export function ErrorMessage({ error, message }: ErrorMessageProps) {
   return (
-    <div className={styles.message}>
+    <div className="errorMessage">
       <div>{message}</div>
-      {error ? <div className={styles.error}>{error.message}</div> : null}
+      {error ? <div className="error">{error.message}</div> : null}
     </div>
   )
 }

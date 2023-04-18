@@ -1,11 +1,10 @@
 import { Handle, Position } from './Handle'
-import styles from './TableNode.module.css'
 
 export function TableNode<TRow>({ color, cols, isSource, name, rowRenderer, rows }: TableNodeProps<TRow>) {
   return (
     <>
-      <table className={styles.table} style={{ '--bg-color': color }}>
-        <thead className={styles.header}>
+      <table className="table" style={{ '--bg-color': color }}>
+        <thead>
           <tr>
             <th colSpan={cols}>{name}</th>
           </tr>

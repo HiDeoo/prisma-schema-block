@@ -1,6 +1,0 @@
-.schema {
-  & :global(.react-flow__edge-path) {
-    pointer-events: all;
-    stroke-width: 2px;
-  }
-}
