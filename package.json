@@ -7,12 +7,11 @@
   "type": "module",
   "scripts": {
     "dev": "blocks start",
-    "build": "blocks build",
+    "build": "tsx scripts/build",
     "lint": "prettier -c --cache . && eslint . --cache --max-warnings=0 && tsc --noEmit",
     "prepare": "husky install"
   },
   "dependencies": {
-    "@githubnext/blocks": "2.3.5",
     "@mrleebo/prisma-ast": "0.5.1",
     "elkjs": "0.8.2",
     "react": "18.2.0",
@@ -20,14 +19,18 @@
     "reactflow": "11.7.0"
   },
   "devDependencies": {
+    "@githubnext/blocks": "2.3.5",
     "@hideoo/eslint-config": "1.1.1",
     "@hideoo/prettier-config": "1.0.1",
     "@hideoo/tsconfig": "2.0.1",
+    "@types/node": "18.15.11",
     "@types/react": "18.0.33",
+    "esbuild": "0.17.17",
     "eslint": "8.37.0",
     "husky": "8.0.3",
     "lint-staged": "13.2.0",
     "prettier": "2.8.7",
+    "tsx": "3.12.6",
     "typescript": "5.0.3"
   },
   "pnpm": {
