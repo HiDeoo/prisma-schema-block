@@ -2,7 +2,7 @@
   "name": "prisma-schema-block",
   "version": "0.0.1",
   "license": "MIT",
-  "description": "",
+  "description": "GitHub Block to preview Prisma schemas in Markdown files or as a custom file renderer in GitHub.",
   "author": "HiDeoo <github@hideoo.dev> (https://hideoo.dev)",
   "type": "module",
   "scripts": {
@@ -46,7 +46,13 @@
   "packageManager": "pnpm@8.1.1",
   "private": true,
   "sideEffects": false,
-  "keywords": [],
+  "keywords": [
+    "github-blocks",
+    "github",
+    "blocks",
+    "prisma",
+    "schema"
+  ],
   "homepage": "https://github.com/HiDeoo/prisma-schema-block",
   "repository": {
     "type": "git",
