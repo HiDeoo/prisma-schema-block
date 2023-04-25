@@ -19,7 +19,7 @@ A [GitHub Block](https://blocks.githubnext.com) to preview [Prisma](https://www.
 
 > **Warning**
 >
-> GitHub Blocks is currently an experimental technical preview. It is not available to all GitHub users and may change at any time.
+> GitHub Blocks is currently an experimental technical preview and may change at any time.
 
 ## Planned Features
 
@@ -28,10 +28,6 @@ GitHub Blocks is still in **early development** and same goes for this GitHub Bl
 - Theme support (the GitHub Blocks UI does not yet support themes).
 
 ## Examples
-
-> **Note**
->
-> The examples below require a GitHub account with access to the GitHub Blocks technical preview. Some screenshots are provided as an alternative.
 
 - [As a file renderer for a Prisma schema file.](https://blocks.githubnext.com/HiDeoo/prisma-schema-block/blob/main/examples/example.prisma)
 - [Embedded in a README file.](https://blocks.githubnext.com/HiDeoo/prisma-schema-block/blob/main/examples/README.md)
